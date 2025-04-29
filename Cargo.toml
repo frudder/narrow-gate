@@ -10,3 +10,4 @@ http-body-util = "0.1"
 hyper-util = { version = "0.1", features = ["full"] }
 polars = "0.46.0"
 axum = {version = "0.8.3", features = ["macros","http2", "ws"]}
+bytes = "1.10.1"
