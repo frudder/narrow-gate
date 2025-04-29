@@ -25,13 +25,12 @@ mod tests {
     async fn bar() -> Result<(),  Box<dyn std::error::Error + Send + Sync>> {
         
         let h = Client::builder(hyper_util::rt::TokioExecutor::new()).build(HttpConnector::new());
-        
         let req = Request::builder()
             .uri("https://www.rust-lang.org/")
             .method("GET")
             .body(Empty::<bytes::Bytes>::new())?;
-
-
+        let response = h.request(req).await?;
+        println!("{:?} {:?}", response.version(), response.status());
         Ok(())
     }
 }
