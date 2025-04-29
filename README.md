@@ -1,2 +1,0 @@
-# narrow-gate
-narrow-gate
