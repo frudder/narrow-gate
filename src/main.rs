@@ -44,7 +44,7 @@ mod tests {
             .method("GET")
             .body(Empty::<bytes::Bytes>::new())?;
         let response = h.request(req).await?;
-        let body = response.into_parts().1.collect().await?.to_bytes();
+        let body = response.into_body().collect().await?.to_bytes();
         let value = serde_json::from_slice::<Value>(&body)?;
         println!("{:?}", value);
         Ok(())
