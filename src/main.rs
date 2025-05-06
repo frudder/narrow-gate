@@ -6,13 +6,13 @@ async fn main() -> Result<(),  Box<dyn std::error::Error + Send + Sync>> {
     Ok(())
 }
 
-
 #[cfg(test)]
 mod tests {
 
     use http_body_util::{ BodyExt, Empty};
     use hyper::Request;
     use hyper_util::client::legacy::Client;
+    use hyper_util::rt::TokioExecutor;
     use hyper_tls::HttpsConnector;
     use serde_json::Value;
 
@@ -25,8 +25,7 @@ mod tests {
 
     #[tokio::test]
     async fn bar() -> Result<(),  Box<dyn std::error::Error + Send + Sync>> {
-        
-        let h = Client::builder(hyper_util::rt::TokioExecutor::new()).build(HttpsConnector::new());
+        let h = Client::builder(TokioExecutor::new()).build(HttpsConnector::new());
         let req = Request::builder()
             .uri("https://www.rust-lang.org/")
             .method("GET")
@@ -38,7 +37,7 @@ mod tests {
 
     #[tokio::test]
     async fn boo() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-        let h = Client::builder(hyper_util::rt::TokioExecutor::new()).build(HttpsConnector::new());
+        let h = Client::builder(TokioExecutor::new()).build(HttpsConnector::new());
         let req = Request::builder()
             .uri("https://lhlzgroup.com/prod-api/cms/web/article/channel/news/view/5?siteId=1887062639954173953")
             .method("GET")
