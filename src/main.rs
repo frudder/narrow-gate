@@ -172,6 +172,17 @@ mod tests {
 
     #[tokio::test]
     async fn foo() -> Result<()> {
+        let name = "kafka";
+
+        let book: Book = Book::new("v");
+        let b = &book;
+        let n = &book;
+
+        let mut book2: Book = Book::new("book");
+
+        let c = &mut book2;
+        let d = &mut book2;
+
         let b: Book = Book::from("v");
         // serde_json::json!()
         let c = serde_json::to_string(&b).unwrap();
